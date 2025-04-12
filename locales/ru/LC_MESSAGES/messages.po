@@ -1,0 +1,176 @@
+# Russian translations for PROJECT.
+# Copyright (C) 2025 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2025-04-02 16:32+0300\n"
+"PO-Revision-Date: 2025-04-02 17:03+0300\n"
+"Last-Translator: \n"
+"Language-Team: ru <LL@li.org>\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Generated-By: Babel 2.17.0\n"
+"X-Generator: Poedit 3.5\n"
+
+#: app/handlers/users/chat.py:27
+msgid "<b>Failed to deliver the message.</b>"
+msgstr "Не удалось доставить сообщение"
+
+#: app/handlers/users/interests.py:40
+msgid "Choose your interests:"
+msgstr "Выберите ваши интересы:"
+
+#: app/handlers/users/language.py:41
+msgid "You cant use this command now"
+msgstr "Вы не можете использовать эту команду сейчас"
+
+#: app/handlers/users/language.py:45
+msgid "Choose your language:"
+msgstr "Выберите язык:"
+
+#: app/handlers/users/language.py:64
+msgid "Language has been updated"
+msgstr "Язык был обновлен"
+
+#: app/handlers/users/start.py:30
+msgid ""
+"<b>Welcome to Miqsi Anon Chat!</b>\n"
+"\n"
+"<b>/search</b> — to find someone to chat with\n"
+"<b>/language</b> — to change bot language\n"
+msgstr ""
+"<b>Добро пожаловать в чат Miqsi Anon!</b>\n"
+"\n"
+"<b>/search</b> — чтобы найти собеседника.\n"
+"<b>/language</b> — изменить язык бота.\n"
+
+#: app/keyboards/inline.py:35
+msgid "anime"
+msgstr "аниме"
+
+#: app/keyboards/inline.py:36
+msgid "music"
+msgstr "музыка"
+
+#: app/keyboards/inline.py:37
+msgid "games"
+msgstr "игры"
+
+#: app/keyboards/inline.py:38
+msgid "books"
+msgstr "книги"
+
+#: app/keyboards/inline.py:39
+msgid "travels"
+msgstr "путешествия"
+
+#: app/keyboards/inline.py:40
+msgid "pets"
+msgstr "питомцы"
+
+#: app/keyboards/inline.py:41
+msgid "roleplay"
+msgstr "ролевые игры"
+
+#: app/keyboards/inline.py:42
+msgid "memes"
+msgstr "мемы"
+
+#: app/keyboards/inline.py:43
+msgid "sport"
+msgstr "спорт"
+
+#: app/keyboards/inline.py:59
+msgid "Reset interests"
+msgstr "Сбросить интересы"
+
+#: app/keyboards/inline.py:85 app/keyboards/inline.py:89
+msgid "Stop"
+msgstr "Стоп"
+
+#: app/keyboards/inline.py:90
+msgid "Next"
+msgstr "Следующий"
+
+#: app/services/dialog.py:156
+msgid "<b>common interests: </b>"
+msgstr "<b>общие интересы:</b>"
+
+#: app/services/dialog.py:160
+#, python-brace-format
+msgid ""
+"<b>A conversational partner has been found!</b>\n"
+"\n"
+"<b>nickname:</b> {nick}\n"
+"{interests}\n"
+"<b>/stop</b> — stop dialog\n"
+"<b>/next</b> — find the next dialog partner\n"
+"<b>/friend</b> — add user as a friend"
+msgstr ""
+"<b>Собеседник найден!</b>\n"
+"\n"
+"<b>никнейм:</b> {nick}\n"
+"{interests}\n"
+"<b>/stop</b> — остановить диалог  \n"
+"<b>/next</b> — найти нового собеседника  \n"
+"<b>/friend</b> — добавить пользователя в друзья"
+
+#: app/services/dialog.py:173
+msgid "<b>Searching for a dialog partner... Please wait</b>"
+msgstr "<b>Поиск партнёра для диалога... Пожалуйста, подождите</b>"
+
+#: app/services/dialog.py:174
+msgid "<b>You're already in queue, please wait...</b>"
+msgstr "<b>Вы уже в очереди... Пожалуйста, подождите</b>"
+
+#: app/services/dialog.py:178
+msgid "<b>Dialog search stopped</b>"
+msgstr "<b>Поиск диалога остановлен</b>"
+
+#: app/services/dialog.py:182
+msgid "<b>You've finished the dialog</b>"
+msgstr "<b>Вы остановили диалог</b>"
+
+#: app/services/dialog.py:183
+msgid "<b>The companion ended the dialog</b>"
+msgstr "<b>Собеседник остановил диалог</b>"
+
+#: locales/hints.py:5
+msgid "❌ Stop"
+msgstr "❌ Стоп"
+
+#: locales/hints.py:6
+msgid "🔎 Search dialog"
+msgstr "🔎 Искать собеседника"
+
+#: locales/hints.py:7
+msgid "🔎 Search next dialog"
+msgstr "🔎 Искать следующего  собеседника"
+
+#: locales/hints.py:8
+msgid "⚙ Change bot language"
+msgstr "⚙ Изменить язык бота"
+
+#: locales/hints.py:9
+msgid "🧩 Set your interests"
+msgstr "🧩 Настроить ваши интересы"
+
+#~ msgid "🔍 Searching for a dialog partner... Please wait."
+#~ msgstr "🔍 Поиск партнера по диалогу... Пожалуйста, подождите."
+
+#~ msgid "Start"
+#~ msgstr "Старт"
+
+#~ msgid "Choose an action"
+#~ msgstr "Выберите действие"
+
+#~ msgid "interests"
+#~ msgstr "интересы"

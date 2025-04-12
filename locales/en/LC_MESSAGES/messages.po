@@ -1,0 +1,223 @@
+# English translations for PROJECT.
+# Copyright (C) 2025 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2025-04-02 16:32+0300\n"
+"PO-Revision-Date: 2025-04-01 08:45+0300\n"
+"Last-Translator: \n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: app/handlers/users/chat.py:27
+msgid "<b>Failed to deliver the message.</b>"
+msgstr ""
+
+#: app/handlers/users/interests.py:40
+msgid "Choose your interests:"
+msgstr ""
+
+#: app/handlers/users/language.py:41
+msgid "You cant use this command now"
+msgstr ""
+
+#: app/handlers/users/language.py:45
+msgid "Choose your language:"
+msgstr ""
+
+#: app/handlers/users/language.py:64
+msgid "Language has been updated"
+msgstr ""
+
+#: app/handlers/users/start.py:30
+msgid ""
+"<b>Welcome to Miqsi Anon Chat!</b>\n"
+"\n"
+"<b>/search</b> — to find someone to chat with\n"
+"<b>/language</b> — to change bot language\n"
+msgstr ""
+
+#: app/keyboards/inline.py:35
+msgid "anime"
+msgstr ""
+
+#: app/keyboards/inline.py:36
+msgid "music"
+msgstr ""
+
+#: app/keyboards/inline.py:37
+msgid "games"
+msgstr ""
+
+#: app/keyboards/inline.py:38
+msgid "books"
+msgstr ""
+
+#: app/keyboards/inline.py:39
+msgid "travels"
+msgstr ""
+
+#: app/keyboards/inline.py:40
+msgid "pets"
+msgstr ""
+
+#: app/keyboards/inline.py:41
+msgid "roleplay"
+msgstr ""
+
+#: app/keyboards/inline.py:42
+msgid "memes"
+msgstr ""
+
+#: app/keyboards/inline.py:43
+msgid "sport"
+msgstr ""
+
+#: app/keyboards/inline.py:59
+msgid "Reset interests"
+msgstr ""
+
+#: app/keyboards/inline.py:85 app/keyboards/inline.py:89
+msgid "Stop"
+msgstr ""
+
+#: app/keyboards/inline.py:90
+msgid "Next"
+msgstr ""
+
+#: app/services/dialog.py:156
+msgid "<b>common interests: </b>"
+msgstr ""
+
+#: app/services/dialog.py:160
+#, python-brace-format
+msgid ""
+"<b>A conversational partner has been found!</b>\n"
+"\n"
+"<b>nickname:</b> {nick}\n"
+"{interests}\n"
+"<b>/stop</b> — stop dialog\n"
+"<b>/next</b> — find the next dialog partner\n"
+"<b>/friend</b> — add user as a friend"
+msgstr ""
+
+#: app/services/dialog.py:173
+msgid "<b>Searching for a dialog partner... Please wait</b>"
+msgstr ""
+
+#: app/services/dialog.py:174
+msgid "<b>You're already in queue, please wait...</b>"
+msgstr ""
+
+#: app/services/dialog.py:178
+msgid "<b>Dialog search stopped</b>"
+msgstr ""
+
+#: app/services/dialog.py:182
+msgid "<b>You've finished the dialog</b>"
+msgstr ""
+
+#: app/services/dialog.py:183
+msgid "<b>The companion ended the dialog</b>"
+msgstr ""
+
+#: locales/hints.py:5
+msgid "❌ Stop"
+msgstr ""
+
+#: locales/hints.py:6
+msgid "🔎 Search dialog"
+msgstr ""
+
+#: locales/hints.py:7
+msgid "🔎 Search next dialog"
+msgstr ""
+
+#: locales/hints.py:8
+msgid "⚙ Change bot language"
+msgstr ""
+
+#: locales/hints.py:9
+msgid "🧩 Set your interests"
+msgstr ""
+
+#~ msgid "<b>common interests:</b>"
+#~ msgstr ""
+
+#~ msgid "Choose your language:"
+#~ msgstr ""
+
+#~ msgid "Language has been updated"
+#~ msgstr ""
+
+#~ msgid "Start"
+#~ msgstr ""
+
+#~ msgid "Create new test"
+#~ msgstr ""
+
+#~ msgid "<b>You cant use this command now.</b>"
+#~ msgstr ""
+
+#~ msgid "<b>Choose your language:</b>"
+#~ msgstr ""
+
+#~ msgid "<b>Language has been updated</b>"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "<b>Welcome to Miqsi Anon Chat!</b>\n"
+#~ "\n"
+#~ "<b>/search</b> to find someone to chat with.\n"
+#~ "<b>/language</b> to change app language.\n"
+#~ msgstr ""
+
+#~ msgid "Choose an action"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "<b>A conversational partner has been found!</b>\n"
+#~ "\n"
+#~ "<b>nickname:</b> {nick}\n"
+#~ "{interests}\n"
+#~ "<b>/stop</b> - stop dialog\n"
+#~ "<b>/next</b> - find the next dialog partner\n"
+#~ "<b>/friend-request</b> - add user as a friend"
+#~ msgstr ""
+
+#~ msgid "<b>common interests:</b> "
+#~ msgstr ""
+
+#~ msgid "<b>Searching for a dialog partner... Please wait.</b>"
+#~ msgstr ""
+
+#~ msgid "<b>Dialog search stopped.</b>"
+#~ msgstr ""
+
+#~ msgid "<b>You've finished the dialog.</b>"
+#~ msgstr ""
+
+#~ msgid "You cant use this command now."
+#~ msgstr ""
+
+#~ msgid "interests"
+#~ msgstr ""
+
+#~ msgid "Change bot language"
+#~ msgstr ""
+
+#~ msgid "Choose your interests"
+#~ msgstr ""
+
+#~ msgid "Search dialog"
+#~ msgstr ""
+

@@ -1,0 +1,57 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+.env
+.venv/
+venv/
+ENV/
+env/
+pip-selfcheck.json
+
+# PyCharm
+/.idea/
+*.iml
+
+# VS Code (если кто-то использует)
+.vscode/
+
+# MacOS
+.DS_Store
+
+# Logs
+*.log
+
+# Unit test / coverage
+htmlcov/
+.tox/
+.nox/
+.coverage
+coverage.xml
+.cache
+nosetests.xml
+test-results/
+
+# MyPy / Pyright / Pylint / etc.
+.mypy_cache/
+.pyre/
+.pytype/
+ruff_cache/
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Jupyter notebooks checkpoints
+.ipynb_checkpoints/
+
+# System
+Thumbs.db
+ehthumbs.db
+
+# Alembic migrations
+/app/database/migrations/
