@@ -1,6 +1,6 @@
-# Miqsi Anon Chat
+# Miqsi Anon Chat# Miqsi Anon Chat
 
-![Bot Icon](assets/images/bot_icon.png){: style="width: 400px; align: center;"}
+![image](assets/images/bot_icon.png){: style="display:block; margin: 0 auto; width: 300px"}
 
 > 🕵️ Anonymous Telegram Chat Bot with friend system, interest-based matching, and multilingual support.  
 > 💬 Built with Python, Aiogram 3, and PostgreSQL.
