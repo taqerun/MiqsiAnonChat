@@ -1,12 +1,9 @@
-from typing import Union, Optional
-
-from aiogram import Router, types
+from aiogram import Router
 from aiogram.filters import StateFilter
 from aiogram.types import Message
 from aiogram.utils.i18n import gettext as _
 
 from app.core import commands
-from app.database import User
 from app.keyboards import dialog_menu_keyboard, main_menu_keyboard, stop_button_keyboard
 from app.services.builders.dialog_builder import DialogContext
 from app.services.utils_services import UtilsServices

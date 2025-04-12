@@ -1,5 +1,3 @@
-from typing import List
-
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 from aiogram.utils.i18n import gettext as _
 

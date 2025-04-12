@@ -1,6 +1,4 @@
-from typing import Union
-
-from aiogram import types, Router
+from aiogram import Router
 from aiogram.types import CallbackQuery, Message
 from aiogram.utils.i18n import gettext as _
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -24,15 +22,15 @@ available_modes = (
 @commands.setup_command(mode_router, 'mode', '💬 Change dialogs mode')
 async def handle_stop_command(message: Message, user: User):
     """
-    Allows the user to stop dialog or queue at any FSM state.
-    Handles both /stop command and "❌ Stop" button.
+    Handles /mode command and prompts the user to select a dialog mode from the list of available modes.
     """
+    
     keyboard = modes_keyboard(selected=user.mode)
     await message.reply(_('Choose dialog mode:'), reply_markup=keyboard)
 
 
 @mode_router.callback_query(lambda c: c.data in available_modes)
-async def set_mode(callback: CallbackQuery, user: User, session: AsyncSession):
+async def set_mode(callback: CallbackQuery, user: User, session: AsyncSession):   
     selected_mode = callback.data
     current_mode = user.mode
 

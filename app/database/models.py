@@ -10,11 +10,11 @@ from sqlalchemy.orm import Mapped, mapped_column, as_declarative, relationship
 class Base:
     __abstract__ = True
 
-    created: Mapped[DateTime] = mapped_column(
-        DateTime, default=func.now()
+    created_at: Mapped[DateTime] = mapped_column(
+        DateTime, server_default=func.now()
     )
-    updated: Mapped[DateTime] = mapped_column(
-        DateTime, default=func.now(), onupdate=func.now()
+    updated_at: Mapped[DateTime] = mapped_column(
+        DateTime, server_default=func.now(), onupdate=func.now()
     )
 
 
@@ -84,7 +84,7 @@ class QueueUser(Base):
         String(20), nullable=False
     )
 
-    user: Mapped["User"] = relationship(
+    user: Mapped[User] = relationship(
         "User", back_populates="queue_entry"
     )
 

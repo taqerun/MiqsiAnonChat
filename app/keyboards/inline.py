@@ -1,6 +1,5 @@
 from typing import List, Optional
 
-from aiogram.filters.callback_data import CallbackData
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram.utils.i18n import gettext as _
 
@@ -12,21 +11,6 @@ def chunk_buttons(buttons: List[InlineKeyboardButton], size: int = 3):
     Splits a list of buttons into rows of a given size.
     '''
     return [buttons[i:i + size] for i in range(0, len(buttons), size)]
-
-
-def confirmation_keyboard(action: str, target_id: str) -> InlineKeyboardMarkup:
-    return InlineKeyboardMarkup(inline_keyboard=[
-        [
-            InlineKeyboardButton(
-                text="✅ Yes",
-                callback_data=confirm_cb.new(action=action, target_id=target_id, decision="yes")
-            ),
-            InlineKeyboardButton(
-                text="❌ No",
-                callback_data=confirm_cb.new(action=action, target_id=target_id, decision="no")
-            )
-        ]
-    ])
 
 
 def languages_keyboard(locale: str=None) -> InlineKeyboardMarkup:

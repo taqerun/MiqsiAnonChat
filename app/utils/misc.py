@@ -1,5 +1,4 @@
 import os
-from typing import Optional
 
 from aiogram.utils.i18n import gettext as _
 
@@ -42,12 +41,3 @@ def get_available_interests() -> dict:
         'sport': _('sport')
     }
     return interests
-
-
-def find_friend_id_by_name(friends: dict, search_name: str) -> Optional[int]:
-    normalized_name = search_name.strip().lower()
-    return next(
-        (int(friend_id) for friend_id, friend in friends.items()
-         if friend.get("name", "").strip().casefold() == normalized_name),
-        None
-    )

@@ -14,13 +14,12 @@ from app.middlewares.dialog import DialogMiddleware
 from app.middlewares.user_friends_services import UserFriendsServicesMiddleware
 from app.middlewares.utils_services import UtilsServicesMiddleware
 
+
 dp = Dispatcher(storage=RedisStorage(redis=redis))
 
 
 async def setup_middlewares() -> None:
-    """
-    Configure all middlewares for the bot dispatcher.
-    """
+    """Configure middleware for the dispatcher."""
     dp.update.middleware(DatabaseMiddleware(session_pool=session_maker))
     dp.update.middleware(ChecksMiddleware())
     dp.update.middleware(MyI18nMiddleware(i18n=i18n))
@@ -30,12 +29,7 @@ async def setup_middlewares() -> None:
 
 
 async def setup_routers(routers: Sequence[Router]) -> None:
-    """
-    Register all provided routers to the dispatcher.
-
-    Args:
-        routers (Sequence[Router]): List of routers to include.
-    """
+    """Configure routers for the dispatcher."""
     for router in routers:
         try:
             dp.include_router(router)
@@ -45,9 +39,7 @@ async def setup_routers(routers: Sequence[Router]) -> None:
 
 
 async def start_bot() -> None:
-    """
-    Main bot startup logic: configure bot, middleware, routers, and start polling.
-    """
+    """Start the bot."""
     bot = Bot(BOT_TOKEN, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
 
     try:
@@ -68,8 +60,6 @@ async def start_bot() -> None:
 
 
 async def shutdown_bot(bot: Bot) -> None:
-    """
-    Gracefully close bot connection and clean up.
-    """
+    """Shutdown the bot."""
     await bot.session.close()
     logs.logger.info("🛑 Bot has been stopped.")

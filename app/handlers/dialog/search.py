@@ -6,7 +6,6 @@ from app.core import commands
 from app.database import User
 from app.keyboards import stop_button_keyboard, dialog_menu_keyboard
 from app.services.builders.dialog_builder import DialogContext
-from app.services.friends_services import FriendsService
 from app.services.utils_services import UtilsServices
 
 search_router = Router()

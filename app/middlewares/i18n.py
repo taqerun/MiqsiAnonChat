@@ -18,7 +18,6 @@ class MyI18nMiddleware(I18nMiddleware):
         if event_context and session:
             result = await session.execute(select(User.locale).where(User.id == event_context.chat.id))
             user_locale = result.scalar_one_or_none()
-            print(result)
             return user_locale or lang_code
 
         return lang_code

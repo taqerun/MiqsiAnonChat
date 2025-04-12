@@ -1,9 +1,6 @@
-from typing import Union
-
 from aiogram import Router, types
-from aiogram.types import ReactionTypeEmoji, Message, TelegramObject, CallbackQuery
+from aiogram.types import Message
 from aiogram.utils.i18n import gettext as _
-from sqlalchemy import update
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core import commands
@@ -31,7 +28,6 @@ async def set_language(callback: types.CallbackQuery, session: AsyncSession, use
     selected_locale = callback.data.strip()
     current_locale = user.locale
 
-    # Update only if language has changed
     if selected_locale != current_locale:
         user.locale = selected_locale
 

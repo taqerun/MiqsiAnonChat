@@ -4,7 +4,6 @@ from aiogram import BaseMiddleware
 from aiogram.types import TelegramObject, CallbackQuery, Message
 
 from app.services.builders.dialog_builder import DialogBuilder
-from app.states import DialogStates
 
 
 class DialogMiddleware(BaseMiddleware):
@@ -21,9 +20,6 @@ class DialogMiddleware(BaseMiddleware):
     ) -> Any:
         message: Message | None = getattr(event, 'message', None)
         callback: CallbackQuery | None = getattr(event, 'callback_query', None)
-
-        if not message and not callback:
-            return await handler(event, data)
 
         user = (message or callback).from_user
         user_id = user.id

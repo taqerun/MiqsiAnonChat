@@ -1,5 +1,3 @@
-from typing import Optional
-
 from aiogram import Router
 from aiogram.filters import StateFilter
 from aiogram.types import Message, CallbackQuery
@@ -50,7 +48,7 @@ async def friend_request(
     await message.bot.send_message(
         dialog_ctx.partner.id,
         text=_('<b>A user sent you a friend request</b>\n\n'
-             '<i><b>Would you like to be anonymous friends?</b></i>'),
+               '<i><b>Would you like to be anonymous friends?</b></i>'),
         reply_markup=keyboard
     )
 

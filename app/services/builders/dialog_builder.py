@@ -1,5 +1,3 @@
-from typing import Optional
-
 from aiogram import Bot
 from aiogram.fsm.storage.base import BaseStorage
 from sqlalchemy import select
