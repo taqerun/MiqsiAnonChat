@@ -15,6 +15,7 @@ BASE_DIR: Path = Path(__file__).resolve().parent.parent.parent
 # === Environment configuration ===
 BOT_TOKEN: str | None = getenv("BOT_TOKEN")
 DB_URI: str | None = getenv("DB_URI")
+REDIS_URL: str | None = getenv("REDIS_URL", "redis://localhost:6379")
 
 if not BOT_TOKEN:
     raise RuntimeError("❌ Environment variable BOT_TOKEN is missing.")
@@ -22,7 +23,7 @@ if not DB_URI:
     raise RuntimeError("❌ Environment variable DB_URI is missing.")
 
 # === External services ===
-redis: Redis = Redis(decode_responses=True)
+redis: Redis = Redis(host=REDIS_URL, decode_responses=True)
 
 # === Internationalization ===
 i18n: I18n = I18n(
