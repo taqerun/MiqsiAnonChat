@@ -1,7 +1,7 @@
 services:
   redis:
     image: redis:alpine
-    command: ["redis-server", "--save", "20", "1", "--loglevel", "warning"]
+    command: redis-server
     env_file:
       - .env
     restart: on-failure
