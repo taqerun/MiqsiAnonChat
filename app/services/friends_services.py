@@ -2,6 +2,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from aiogram.utils.i18n import gettext as _
 
 from app.database import User
+from app.utils import HTML
 
 
 class FriendsService:
@@ -41,13 +42,13 @@ class FriendsService:
 
         await self.session.commit()
 
-        text_template = _(
-            '<b>You now have an anonymous friend {name}!</b>\n\n'
-            '<b><i>You can submit a request to communicate with '
-            'your friends in the main menu of the bot</i></b>'
-        )
+        text_template = HTML.b(_(
+            'You now have an anonymous friend {name}!\n\n'
+            'You can submit a request to communicate with '
+            'your friends in the main menu of the bot'
+        ))
 
         return {
-            self.user1.id: text_template.format(name=user1_name),
-            self.user2.id: text_template.format(name=user2_name),
+            self.user1.id: text_template.format(name=HTML.code(user1_name)),
+            self.user2.id: text_template.format(name=HTML.code(user2_name)),
         }

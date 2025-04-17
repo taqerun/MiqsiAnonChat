@@ -7,7 +7,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.logs import logger
 from app.database import User, QueueUser, Dialog
-from app.services.dialog.dialog_notification_service import DialogNotificationService
+from app.services.dialog.dialog_notification_service import DialogNotificationService, DialogMessageFormatter
 from app.states import DialogStates
 
 
@@ -24,7 +24,7 @@ class DialogService:
         self.session = session
         self.user = user
         self.current_dialog = current_dialog
-        self.notifier = DialogNotificationService()
+        self.notifier = DialogNotificationService(DialogMessageFormatter())
         self.storage = storage
 
     def _ctx_key(self, user_id: int) -> StorageKey:

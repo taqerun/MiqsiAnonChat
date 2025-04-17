@@ -10,6 +10,7 @@ from app.keyboards import dialog_menu_keyboard, make_confirm_keyboard
 from app.services.builders.dialog_builder import DialogContext
 from app.services.friends_services import FriendsService
 from app.states import DialogStates
+from app.utils import HTML
 
 
 friend_router = Router()
@@ -23,21 +24,31 @@ async def friend_request(
         dialog_ctx: DialogContext,
         session: AsyncSession
 ):
+    """
+    Handles /friend or "Add to friends" button in the dialog menu to send a friend request.
+
+    :param message: Telegram message object.
+    :param user: User who sent a friend request.
+    :param dialog_ctx: Dialog context object, containing the current dialog partner.
+    :param session: SQLAlchemy session object.
+    :return: None
+    """
+
     if not dialog_ctx.service.current_dialog:
-        return await message.answer("You haven't dialog partner")
+        return await message.answer(HTML.b(_("You haven't dialog partner")))
 
     friends_service = FriendsService(user, dialog_ctx.partner, session)
 
     if friends_service.is_friends:
-        await message.reply(_('<b>❌ You are already friends now</b>'))
+        await message.reply('❌ ' + HTML.b(_('You are already friends now')))
         return
 
 
     await message.reply(
-        _(
-            '<b>You have sent a friend request</b>\n\n'
-            '<i><b>Waiting for a reply from the person you are talking to...</b></i>'
-        )
+        HTML.b(_(
+            'You have sent a friend request\n\n'
+            'Waiting for a reply from the person you are talking to...'
+        ))
     )
 
     keyboard = make_confirm_keyboard(
@@ -47,8 +58,8 @@ async def friend_request(
 
     await message.bot.send_message(
         dialog_ctx.partner.id,
-        text=_('<b>A user sent you a friend request</b>\n\n'
-               '<i><b>Would you like to be anonymous friends?</b></i>'),
+        text=HTML.b(_('A user sent you a friend request\n\n'
+               'Would you like to be anonymous friends?')),
         reply_markup=keyboard
     )
 
@@ -60,6 +71,15 @@ async def friend_request_confirmation(
         dialog_ctx: DialogContext,
         session: AsyncSession
 ):
+    """
+    Handles a friend request response from another user.
+
+    :param callback: Telegram callback query object.
+    :param user: User who responded to the friend request.
+    :param dialog_ctx: Dialog context object, containing the current dialog partner.
+    :param session: SQLAlchemy session object.
+    :return: None
+    """
     data = callback.data.split(':')
     decision = data[1]
     dialog_id = data[2]
@@ -78,8 +98,8 @@ async def friend_request_confirmation(
             await callback.bot.send_message(chat_id=dialog_ctx.partner.id, text=messages[dialog_ctx.partner.id], reply_markup=keyboard)
 
         case 'decline':
-            await callback.message.edit_text(_('<b>❌ You declined a friendship request</b>'), reply_markup=None)
+            await callback.message.edit_text('❌ ' + HTML.b(_('You declined a friendship request</b>'), reply_markup=None))
             await callback.bot.send_message(
                 chat_id=dialog_ctx.partner.id,
-                text=_("<b>❌ The person you're talking to has declined your friendship request</b>")
+                text='❌ ' + HTML.b(_("The person you're talking to has declined your friendship request"))
             )

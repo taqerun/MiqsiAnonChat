@@ -8,26 +8,33 @@ from sqlalchemy.orm import Mapped, mapped_column, as_declarative, relationship
 
 @as_declarative()
 class Base:
+    """Base class for all models."""
+
+
     __abstract__ = True
 
     created_at: Mapped[DateTime] = mapped_column(
-        DateTime, server_default=func.now()
+        DateTime, server_default=func.now(), nullable=False
     )
     updated_at: Mapped[DateTime] = mapped_column(
-        DateTime, server_default=func.now(), onupdate=func.now()
+        DateTime,
+        server_default=func.now(),
+        onupdate=func.now(),
+        nullable=False,
     )
 
 
 class User(Base):
+    """Represents a user in the database."""
     __tablename__ = "users"
 
     id: Mapped[int] = mapped_column(
         BigInteger, primary_key=True, autoincrement=False
-    )  # Telegram user ID
+    )
 
     locale: Mapped[str] = mapped_column(
         String(10), nullable=False, default="en"
-    )  # User language
+    )
 
     gender: Mapped[Optional[str]] = mapped_column(
         String(10), nullable=True
@@ -85,11 +92,12 @@ class QueueUser(Base):
     )
 
     user: Mapped[User] = relationship(
-        "User", back_populates="queue_entry"
+        "User", back_populates="queue_entry", lazy="selectin"
     )
 
 
 class Dialog(Base):
+    """Represents a dialog between two users."""
     __tablename__ = 'dialogs'
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)

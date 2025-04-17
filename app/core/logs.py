@@ -8,9 +8,10 @@ from app.core.config import BASE_DIR
 # === Constants ===
 LOG_LEVEL: str = getenv("LOG_LEVEL", "INFO").upper()
 LOG_FORMAT: str = (
-    "[%(asctime)s] [%(levelname)-8s] "
+    "[%(asctime)s] [%(levelname)-4s] "
     "[%(name)s.%(funcName)s:%(lineno)d] - %(message)s"
 )
+
 
 # === Paths ===
 LOGS_DIR: Path = BASE_DIR / "logs"

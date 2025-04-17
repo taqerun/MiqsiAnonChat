@@ -13,9 +13,9 @@ mode_router = Router()
 
 available_modes = (
     'default',
-    'voice',
-    'video',
-    'voice-and-video'
+    'only-voice-messages',
+    'only-video-messages',
+    'voice-and-video-messages'
 )
 
 

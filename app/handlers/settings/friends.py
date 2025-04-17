@@ -1,13 +1,15 @@
-import inspect
-
 from aiogram import Router
 from aiogram.types import Message, CallbackQuery
 from aiogram.utils.i18n import gettext as _
 
 from app.core import commands
+from aiogram.fsm.context import FSMContext
+from app.states import FriendsStates
 from app.keyboards import create_keyboard, friends_list_keyboard, make_confirm_keyboard
 from app.database.models import User
 from app.services.user_friends_services import UserFriendsService
+from app.services.utils_services import UtilsServices
+from app.utils import HTML
 
 
 friends_settings_router = Router()
@@ -15,19 +17,21 @@ friends_settings_router = Router()
 
 @commands.setup_command(friends_settings_router, 'friends', '👥 My friends')
 @friends_settings_router.callback_query(lambda c: c.data == 'friends_list')
-async def friends_list(event: Message | CallbackQuery, user: User):
+async def friends_list(event: Message | CallbackQuery, user: User, state: FSMContext):
     """
     Prompt the user to select a language using inline keyboard.
     """
     keyboard = friends_list_keyboard(user.friends)
+    text = HTML.b(_('Choose your friend')) + ': ' if len(user.friends) else HTML.b(_("Now you don't have any friends")) + ' 😢'
     if isinstance(event, CallbackQuery):
-        await event.message.edit_text(_("<b>Choose your friend:</b>"), reply_markup=keyboard)
+        await event.message.edit_text(_(text), reply_markup=keyboard)
     else:
-        await event.reply(_("<b>Choose your friend:</b>"), reply_markup=keyboard)
+        await event.reply(_(text), reply_markup=keyboard)
 
 
 @friends_settings_router.callback_query(lambda c: c.data.startswith('friend:'))
-async def friend_menu(callback: CallbackQuery):
+async def friend_menu(callback: CallbackQuery, state: FSMContext):
+    await state.update_data(message_for_edit=callback.message.message_id)
     data = callback.data.split(':')
     friend_name = data[1]
     keyboard = create_keyboard(
@@ -48,25 +52,23 @@ async def friend_menu(callback: CallbackQuery):
                 'text': '◀ ' + _('Back'),
                 'data': 'friends_list'
             }
-
         ]
     )
+
     await callback.message.edit_text(
-        text=_('<b>Choose action with your friend: {name}</b>').format(name=friend_name),
+        text=HTML.b(_('Choose action for: {name}')).format(name=friend_name),
         reply_markup=keyboard
     )
 
 
 @friends_settings_router.callback_query(lambda c: c.data.startswith('friend_menu'))
-async def friend_settings(callback: CallbackQuery, friends_service: UserFriendsService):
+async def friend_settings(callback: CallbackQuery, friends_service: UserFriendsService, user: User, utils_service: UtilsServices):
     data = callback.data.split(':')
     action = data[1]
     friend_name = data[2]
     confirm = 'confirm' in data
-    params = data[-1].split('|') if len(data) > 3 else None
-
     action_name = action.replace("_", " ").capitalize()
-    action_message_template = f'<b>{friend_name}</b>\n<b>{action_name}</b>' + '\n\n {message}'
+    action_message_template = HTML.b(action_name) + ': ' + HTML.b(friend_name) + '\n\n {message}'
 
     friend_id = friends_service.get_friend_id_by_name(friend_name)
 
@@ -82,18 +84,29 @@ async def friend_settings(callback: CallbackQuery, friends_service: UserFriendsS
                     reply_markup=confirm_keyboard
                 )
             else:
-                friend_action_method = getattr(friends_service, action, None)
+                action_func = getattr(friends_service, action)
+                res = await action_func(friend_name)
+                await utils_service.send_messages(
+                    res,
+                    edit=True,
+                    message_for_edit={'mid': callback.message.message_id, 'uid': callback.from_user.id})
+    else:
+        await callback.answer(_('Friend is not found'))
+        await friends_list(callback.message, user)
+        await callback.message.delete()
 
-                if callable(friend_action_method):
-                    if len(inspect.signature(friend_action_method).parameters) > 1:
-                        await friend_action_method(friend_name, *params)
-                    else:
-                        if params:
-                            res: dict = await friend_action_method(friend_name)
 
-                            for user_id, user_message in res.items():
-                                if user_id == callback.from_user.id:
-                                    await callback.answer(user_message)
-                                    await callback.message.delete()
 
-                                await callback.bot.send_message(user_id, user_message)
+@friends_settings_router.message(FriendsStates.rename)
+async def rename_friend(message: Message, friends_service: UserFriendsService, state: FSMContext, utils_service: UtilsServices):
+    await state.update_data(new_name=message.text)
+
+    state_data = await state.get_data()
+    name = state_data.get('name')
+    mid = state_data.get('message_for_edit')
+    res = await friends_service.rename(name)
+    await utils_service.send_messages(
+        res,
+        edit=True,
+        message_for_edit={'mid': mid, 'uid': message.from_user.id}
+    )

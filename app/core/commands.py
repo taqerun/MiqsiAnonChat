@@ -76,12 +76,9 @@ def register_localized_commands(
         """
         # Iterate over the available locales and register the handler for each localized command
         for locale in available_locales:
-            # Get the localized text for the command in the current locale
             localized_text = i18n.gettext(commands, locale=locale)
-            # Register the handler with the router using the localized command
             router.message(F.text == localized_text, *filters)(handler)
 
-        # Return the decorated handler
         return handler
 
     return decorator

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-02 16:32+0300\n"
+"POT-Creation-Date: 2025-04-13 02:49+0300\n"
 "PO-Revision-Date: 2025-04-01 08:45+0300\n"
 "Last-Translator: \n"
 "Language: en\n"
@@ -18,136 +18,316 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.17.0\n"
 
-#: app/handlers/users/chat.py:27
-msgid "<b>Failed to deliver the message.</b>"
-msgstr ""
-
-#: app/handlers/users/interests.py:40
-msgid "Choose your interests:"
-msgstr ""
-
-#: app/handlers/users/language.py:41
-msgid "You cant use this command now"
-msgstr ""
-
-#: app/handlers/users/language.py:45
-msgid "Choose your language:"
-msgstr ""
-
-#: app/handlers/users/language.py:64
-msgid "Language has been updated"
-msgstr ""
-
-#: app/handlers/users/start.py:30
+#: app/handlers/start.py:30
 msgid ""
-"<b>Welcome to Miqsi Anon Chat!</b>\n"
+"Welcome to Miqsi Anon Chat!\n"
 "\n"
-"<b>/search</b> — to find someone to chat with\n"
-"<b>/language</b> — to change bot language\n"
 msgstr ""
 
-#: app/keyboards/inline.py:35
-msgid "anime"
+#: app/handlers/start.py:31
+msgid "to find someone to chat with"
 msgstr ""
 
-#: app/keyboards/inline.py:36
-msgid "music"
+#: app/handlers/start.py:32
+msgid "to change bot language"
 msgstr ""
 
-#: app/keyboards/inline.py:37
-msgid "games"
+#: app/handlers/start.py:33
+msgid "to set your interests"
 msgstr ""
 
-#: app/keyboards/inline.py:38
-msgid "books"
+#: app/handlers/dialog/chat.py:32
+msgid "In your dialog mode, only voice messages are allowed."
 msgstr ""
 
-#: app/keyboards/inline.py:39
-msgid "travels"
+#: app/handlers/dialog/chat.py:35
+msgid "In your dialog mode, only video messages are allowed."
 msgstr ""
 
-#: app/keyboards/inline.py:40
-msgid "pets"
+#: app/handlers/dialog/chat.py:38
+msgid "In this mode, only voice or video messages are allowed."
 msgstr ""
 
-#: app/keyboards/inline.py:41
-msgid "roleplay"
+#: app/handlers/dialog/friend.py:38
+msgid "You haven't dialog partner"
 msgstr ""
 
-#: app/keyboards/inline.py:42
-msgid "memes"
+#: app/handlers/dialog/friend.py:43
+msgid "You are already friends now"
 msgstr ""
 
-#: app/keyboards/inline.py:43
-msgid "sport"
+#: app/handlers/dialog/friend.py:49
+msgid ""
+"You have sent a friend request\n"
+"\n"
+"Waiting for a reply from the person you are talking to..."
 msgstr ""
 
-#: app/keyboards/inline.py:59
+#: app/handlers/dialog/friend.py:61
+msgid ""
+"A user sent you a friend request\n"
+"\n"
+"Would you like to be anonymous friends?"
+msgstr ""
+
+#: app/handlers/dialog/friend.py:101
+msgid "You declined a friendship request</b>"
+msgstr ""
+
+#: app/handlers/dialog/friend.py:104
+msgid "The person you're talking to has declined your friendship request"
+msgstr ""
+
+#: app/handlers/dialog/next.py:24
+msgid "You are not in dialog now"
+msgstr ""
+
+#: app/handlers/dialog/search.py:25
+msgid "You already in dialog now"
+msgstr ""
+
+#: app/handlers/settings/friends.py:24
+msgid "Choose your friend"
+msgstr ""
+
+#: app/handlers/settings/friends.py:24
+msgid "Now you don't have any friends"
+msgstr ""
+
+#: app/handlers/settings/friends.py:38
+msgid "Rename"
+msgstr ""
+
+#: app/handlers/settings/friends.py:42
+msgid "Request for dialog"
+msgstr ""
+
+#: app/handlers/settings/friends.py:46
+msgid "Delete"
+msgstr ""
+
+#: app/handlers/settings/friends.py:50
+msgid "Back"
+msgstr ""
+
+#: app/handlers/settings/friends.py:57
+#, python-brace-format
+msgid "Choose action for: {name}"
+msgstr ""
+
+#: app/handlers/settings/friends.py:79
+msgid "Are you sure?"
+msgstr ""
+
+#: app/handlers/settings/interests.py:24
+msgid "Choose your interests"
+msgstr ""
+
+#: app/handlers/settings/language.py:21
+msgid "Choose your language"
+msgstr ""
+
+#: app/handlers/settings/language.py:37
+#, python-brace-format
+msgid "Language updated from {before} to {after}"
+msgstr ""
+
+#: app/handlers/settings/language.py:48
+msgid "Please choose a language different from your current one"
+msgstr ""
+
+#: app/handlers/settings/mode.py:29
+msgid "Choose dialog mode:"
+msgstr ""
+
+#: app/keyboards/inline.py:71
 msgid "Reset interests"
 msgstr ""
 
-#: app/keyboards/inline.py:85 app/keyboards/inline.py:89
-msgid "Stop"
+#: app/keyboards/inline.py:80
+msgid "Default"
 msgstr ""
 
-#: app/keyboards/inline.py:90
-msgid "Next"
+#: app/keyboards/inline.py:81
+msgid "Only voice messages"
 msgstr ""
 
-#: app/services/dialog.py:156
-msgid "<b>common interests: </b>"
+#: app/keyboards/inline.py:82
+msgid "Only video messages"
 msgstr ""
 
-#: app/services/dialog.py:160
-#, python-brace-format
-msgid ""
-"<b>A conversational partner has been found!</b>\n"
-"\n"
-"<b>nickname:</b> {nick}\n"
-"{interests}\n"
-"<b>/stop</b> — stop dialog\n"
-"<b>/next</b> — find the next dialog partner\n"
-"<b>/friend</b> — add user as a friend"
+#: app/keyboards/inline.py:83
+msgid "Voice and video messages"
 msgstr ""
 
-#: app/services/dialog.py:173
-msgid "<b>Searching for a dialog partner... Please wait</b>"
+#: app/keyboards/inline.py:107
+msgid "Confirm"
 msgstr ""
 
-#: app/services/dialog.py:174
-msgid "<b>You're already in queue, please wait...</b>"
+#: app/keyboards/inline.py:108
+msgid "Cancel"
 msgstr ""
 
-#: app/services/dialog.py:178
-msgid "<b>Dialog search stopped</b>"
-msgstr ""
-
-#: app/services/dialog.py:182
-msgid "<b>You've finished the dialog</b>"
-msgstr ""
-
-#: app/services/dialog.py:183
-msgid "<b>The companion ended the dialog</b>"
-msgstr ""
-
-#: locales/hints.py:5
-msgid "❌ Stop"
-msgstr ""
-
-#: locales/hints.py:6
+#: app/keyboards/reply.py:8
 msgid "🔎 Search dialog"
 msgstr ""
 
-#: locales/hints.py:7
-msgid "🔎 Search next dialog"
+#: app/keyboards/reply.py:9
+msgid "💬 Change dialogs mode"
 msgstr ""
 
-#: locales/hints.py:8
+#: app/keyboards/reply.py:11
+msgid "🧩 Set your interests"
+msgstr ""
+
+#: app/keyboards/reply.py:12
 msgid "⚙ Change bot language"
 msgstr ""
 
-#: locales/hints.py:9
-msgid "🧩 Set your interests"
+#: app/keyboards/reply.py:15
+msgid "👥 My friends"
+msgstr ""
+
+#: app/keyboards/reply.py:21 app/keyboards/reply.py:41
+#: app/keyboards/reply.py:51 app/keyboards/reply.py:63
+msgid "Choose an action"
+msgstr ""
+
+#: app/keyboards/reply.py:27
+msgid "🔎 Search next dialog"
+msgstr ""
+
+#: app/keyboards/reply.py:30 app/keyboards/reply.py:47
+msgid "❌ Stop"
+msgstr ""
+
+#: app/keyboards/reply.py:35
+msgid "👥 Add user to friends"
+msgstr ""
+
+#: app/services/friends_services.py:46
+#, python-brace-format
+msgid ""
+"You now have an anonymous friend {name}!\n"
+"\n"
+"You can submit a request to communicate with your friends in the main "
+"menu of the bot"
+msgstr ""
+
+#: app/services/user_friends_services.py:49
+#, python-brace-format
+msgid "Friend with name {old_name} renamed to {new_name}"
+msgstr ""
+
+#: app/services/user_friends_services.py:53
+#: app/services/user_friends_services.py:82
+msgid "Friend is not found"
+msgstr ""
+
+#: app/services/user_friends_services.py:76
+#, python-brace-format
+msgid "{name} has been removed from friends</b>"
+msgstr ""
+
+#: app/services/user_friends_services.py:78
+#, python-brace-format
+msgid "{name} has removed you from friends"
+msgstr ""
+
+#: app/services/dialog/dialog_forward_services.py:83
+msgid "Failed to deliver message. The user may have blocked the bot."
+msgstr ""
+
+#: app/services/dialog/message_formatter.py:14
+msgid "Common interests"
+msgstr ""
+
+#: app/services/dialog/message_formatter.py:18
+#, python-brace-format
+msgid "It's your friend {friend_name}!\n"
+msgstr ""
+
+#: app/services/dialog/message_formatter.py:20
+msgid "A conversational partner has been found!\n"
+msgstr ""
+
+#: app/services/dialog/message_formatter.py:25
+msgid "stop the dialog"
+msgstr ""
+
+#: app/services/dialog/message_formatter.py:26
+msgid "find the next partner"
+msgstr ""
+
+#: app/services/dialog/message_formatter.py:27
+msgid "add user as a friend"
+msgstr ""
+
+#: app/services/dialog/message_formatter.py:31
+msgid "You are already in the queue. Please wait..."
+msgstr ""
+
+#: app/services/dialog/message_formatter.py:34
+msgid "Dialog search stopped"
+msgstr ""
+
+#: app/services/dialog/message_formatter.py:37
+msgid "You have left the dialog"
+msgstr ""
+
+#: app/services/dialog/message_formatter.py:40
+msgid "Your partner left the dialog"
+msgstr ""
+
+#: app/services/dialog/message_formatter.py:43
+msgid "with interests"
+msgstr ""
+
+#: app/services/dialog/message_formatter.py:45
+#, python-brace-format
+msgid ""
+"Looking for a dialog partner{interests}\n"
+"Dialog mode: {mode}"
+msgstr ""
+
+#: app/services/dialog/message_formatter.py:50
+msgid "Oops... Something went wrong."
+msgstr ""
+
+#: app/utils/misc.py:28
+msgid "anime"
+msgstr ""
+
+#: app/utils/misc.py:29
+msgid "music"
+msgstr ""
+
+#: app/utils/misc.py:30
+msgid "games"
+msgstr ""
+
+#: app/utils/misc.py:31
+msgid "books"
+msgstr ""
+
+#: app/utils/misc.py:32
+msgid "travels"
+msgstr ""
+
+#: app/utils/misc.py:33
+msgid "pets"
+msgstr ""
+
+#: app/utils/misc.py:34
+msgid "roleplay"
+msgstr ""
+
+#: app/utils/misc.py:35
+msgid "memes"
+msgstr ""
+
+#: app/utils/misc.py:36
+msgid "sport"
 msgstr ""
 
 #~ msgid "<b>common interests:</b>"
@@ -219,5 +399,230 @@ msgstr ""
 #~ msgstr ""
 
 #~ msgid "Search dialog"
+#~ msgstr ""
+
+#~ msgid "<b>Failed to deliver the message.</b>"
+#~ msgstr ""
+
+#~ msgid "Choose your interests:"
+#~ msgstr ""
+
+#~ msgid "You cant use this command now"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "<b>Welcome to Miqsi Anon Chat!</b>\n"
+#~ "\n"
+#~ "<b>/search</b> — to find someone to chat with\n"
+#~ "<b>/language</b> — to change bot language\n"
+#~ msgstr ""
+
+#~ msgid "<b>common interests: </b>"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "<b>A conversational partner has been found!</b>\n"
+#~ "\n"
+#~ "<b>nickname:</b> {nick}\n"
+#~ "{interests}\n"
+#~ "<b>/stop</b> — stop dialog\n"
+#~ "<b>/next</b> — find the next dialog partner\n"
+#~ "<b>/friend</b> — add user as a friend"
+#~ msgstr ""
+
+#~ msgid "<b>Searching for a dialog partner... Please wait</b>"
+#~ msgstr ""
+
+#~ msgid "<b>You're already in queue, please wait...</b>"
+#~ msgstr ""
+
+#~ msgid "<b>Dialog search stopped</b>"
+#~ msgstr ""
+
+#~ msgid "<b>You've finished the dialog</b>"
+#~ msgstr ""
+
+#~ msgid "<b>The companion ended the dialog</b>"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "<b>Welcome to Miqsi Anon Chat!</b>\n"
+#~ "\n"
+#~ "<b>/search</b> — to find someone to chat with\n"
+#~ "<b>/language</b> — to change bot language\n"
+#~ "<b>/interests</b> — to set your interests"
+#~ msgstr ""
+
+#~ msgid "🎤 In your dialog mode, only voice messages are allowed."
+#~ msgstr ""
+
+#~ msgid "📹 In your dialog mode, only video messages are allowed."
+#~ msgstr ""
+
+#~ msgid "🎥🎤 In this mode, only voice or video messages are allowed."
+#~ msgstr ""
+
+#~ msgid "<b>❌ You are already friends now</b>"
+#~ msgstr ""
+
+#~ msgid "<b>❌ You already in dialog now</b>"
+#~ msgstr ""
+
+#~ msgid "💬 Language updated from {before} to {after}"
+#~ msgstr ""
+
+#~ msgid "✅ Accept friend request"
+#~ msgstr ""
+
+#~ msgid "❌ Decline friend request"
+#~ msgstr ""
+
+#~ msgid "👥 It's your friend <b>{friend_name}</b>!\n"
+#~ msgstr ""
+
+#~ msgid "🎉 <b>A conversational partner has been found!</b>\n"
+#~ msgstr ""
+
+#~ msgid "🛑 <b>Dialog search stopped.</b>"
+#~ msgstr ""
+
+#~ msgid "💬 <b>You have left the dialog.</b>"
+#~ msgstr ""
+
+#~ msgid "👤 <b>Your partner left the dialog.</b>"
+#~ msgstr ""
+
+#~ msgid "⏳ <b>You are already in the queue. Please wait...</b>"
+#~ msgstr ""
+
+#~ msgid "🤖 <b>Oops... Something went wrong.</b>"
+#~ msgstr ""
+
+#~ msgid "❌ Failed to deliver message. The user may have blocked the bot."
+#~ msgstr ""
+
+#~ msgid "<b>❌ You declined a friendship request</b>"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "<b>❌ The person you're talking to "
+#~ "has declined your friendship request</b>"
+#~ msgstr ""
+
+#~ msgid "<b>❌ Friend is not found</b>"
+#~ msgstr ""
+
+#~ msgid "<b>✅ <code>{name}</code> has been removed from friends</b>"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "🔎 <b>Looking for a dialog partner{interests}\n"
+#~ "Dialog mode:</b> {mode}"
+#~ msgstr ""
+
+#~ msgid "<b>Choose your friend:</b>"
+#~ msgstr ""
+
+#~ msgid "Stop"
+#~ msgstr ""
+
+#~ msgid "Next"
+#~ msgstr ""
+
+#~ msgid "It's your friend <b>{friend_name}</b>!\n"
+#~ msgstr ""
+
+#~ msgid "<b>A conversational partner has been found!</b>\n"
+#~ msgstr ""
+
+#~ msgid "<b>You have left the dialog.</b>"
+#~ msgstr ""
+
+#~ msgid "<b>Your partner left the dialog.</b>"
+#~ msgstr ""
+
+#~ msgid " with interests: "
+#~ msgstr ""
+
+#~ msgid ""
+#~ "<b>Looking for a dialog partner{interests}\n"
+#~ "Dialog mode:</b> {mode}"
+#~ msgstr ""
+
+#~ msgid "<b>You are already in the queue. Please wait...</b>"
+#~ msgstr ""
+
+#~ msgid "<b>Oops... Something went wrong.</b>"
+#~ msgstr ""
+
+#~ msgid "<b>You are already friends now</b>"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "<b>You have sent a friend request</b>\n"
+#~ "\n"
+#~ "<i><b>Waiting for a reply from the person you are talking to...</b></i>"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "<b>A user sent you a friend request</b>\n"
+#~ "\n"
+#~ "<i><b>Would you like to be anonymous friends?</b></i>"
+#~ msgstr ""
+
+#~ msgid "<b>You declined a friendship request</b>"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "<b>The person you're talking to has "
+#~ "declined your friendship request</b>"
+#~ msgstr ""
+
+#~ msgid "<b>You are not in dialog now</b>"
+#~ msgstr ""
+
+#~ msgid "<b>You already in dialog now</b>"
+#~ msgstr ""
+
+#~ msgid "<b>Choose action with your friend: {name}</b>"
+#~ msgstr ""
+
+#~ msgid "<b>Please choose a language different from your current one.</b>"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "<b>You now have an anonymous friend {name}!</b>\n"
+#~ "\n"
+#~ "<b><i>You can submit a request to "
+#~ "communicate with your friends in the "
+#~ "main menu of the bot</i></b>"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "<b>Friend with name <code>{old_name}</code> "
+#~ "renamed to <code>{new_name}</code></b>"
+#~ msgstr ""
+
+#~ msgid "<b>Friend is not found</b>"
+#~ msgstr ""
+
+#~ msgid "<b><code>{name}</code> has been removed from friends</b>"
+#~ msgstr ""
+
+#~ msgid "<b><code>{name}</code> has removed you from friends</b>"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "<b>Welcome to Miqsi Anon Chat!</b>\n"
+#~ "\n"
+#~ msgstr ""
+
+#~ msgid "<b>Choose your interests:</b>"
+#~ msgstr ""
+
+#~ msgid "<Friend with name {old_name} renamed to {new_name}</b>"
+#~ msgstr ""
+
+#~ msgid "<>Friend is not found"
 #~ msgstr ""
 

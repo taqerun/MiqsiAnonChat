@@ -13,6 +13,27 @@ def chunk_buttons(buttons: List[InlineKeyboardButton], size: int = 3):
     return [buttons[i:i + size] for i in range(0, len(buttons), size)]
 
 
+def create_keyboard(buttons: List[dict], last_button: dict=None, size: int=1, locale: str = None) -> InlineKeyboardMarkup:
+    '''
+    Create a dynamic keyboard depending on context.
+    '''
+    def localize(text: str) -> str:
+        return _(text, locale=locale) if locale else _(text)
+
+    inline_buttons = chunk_buttons(
+        [
+            InlineKeyboardButton(text=button['text'], callback_data=button['data'])
+            for button in buttons
+        ],
+        size=size
+    )
+
+    if last_button:
+        inline_buttons.append([InlineKeyboardButton(text=last_button['text'], callback_data=last_button['data'])])
+
+    return InlineKeyboardMarkup(inline_keyboard=inline_buttons)
+
+
 def languages_keyboard(locale: str=None) -> InlineKeyboardMarkup:
     '''
     Create a keyboard for language selection.
@@ -20,14 +41,15 @@ def languages_keyboard(locale: str=None) -> InlineKeyboardMarkup:
     languages = misc.get_available_locales()
     languages.remove(locale)
 
-    buttons = chunk_buttons([
-        InlineKeyboardButton(
-            text=f'{misc.language_flag(lang)} | {lang.upper()}',
-            callback_data=lang
-        ) for lang in languages if lang
-    ])
-
-    return InlineKeyboardMarkup(inline_keyboard=buttons)
+    return create_keyboard(
+        [
+            {
+                'text': f'{misc.language_flag(lang)} | {lang.upper()}',
+                'data': lang
+            } for lang in languages if lang
+        ],
+        size=3
+    )
 
 
 def interests_keyboard(user_interests: Optional[List[str]]) -> InlineKeyboardMarkup:
@@ -37,60 +59,20 @@ def interests_keyboard(user_interests: Optional[List[str]]) -> InlineKeyboardMar
 
     interests = get_available_interests()
 
-    buttons = [
-        InlineKeyboardButton(
-            text=f'✅ {interests[interest]}'
-            if user_interests is not None and interest in user_interests else interests[interest],
-            callback_data=interest
-        ) for interest in interests.keys()
-    ]
+    keyboard = create_keyboard(
+        [
+            {
+                'text': '✅ ' + _(interest)
+                if user_interests is not None and interest in user_interests else interests[interest],
+                'data': interest
+            }
+            for interest in interests.keys()
+        ],
+        last_button={'text': '🧹 ' + _('Reset interests'), 'data': INTERESTS_RESET_KEY},
+        size=3
+    )
 
-    # Create rows of 3 buttons
-    rows = chunk_buttons(buttons, size=3)
-
-    # Add a full-width reset button at the bottom
-    rows.append([
-        InlineKeyboardButton(
-            text=_('Reset interests'),
-            callback_data=INTERESTS_RESET_KEY
-        )
-    ])
-
-    return InlineKeyboardMarkup(inline_keyboard=rows)
-
-
-def create_keyboard(buttons: List[dict] = None, _=None, command: str = None, locale: str = None, size: int=1) -> InlineKeyboardMarkup:
-    '''
-    Create a dynamic keyboard depending on context.
-    '''
-    def localize(text: str) -> str:
-        return _(text, locale=locale) if locale else _(text)
-
-    if _ and not buttons and not command:
-        buttons = [
-            {'text': localize('Change bot language'), 'data': 'language'},
-            {'text': localize('Choose your interests'), 'data': 'interests'},
-            {'text': localize('Search dialog'), 'data': 'search'},
-        ]
-
-    elif _ and not buttons and command:
-        match command:
-            case 'stop':
-                buttons = [
-                    {'text': _('Stop'), 'data': 'stop'}
-                ]
-            case 'dialog':
-                buttons = [
-                    {'text': _('Stop'), 'data': 'stop'},
-                    {'text': _('Next'), 'data': 'next'}
-                ]
-
-    inline_buttons = [
-        InlineKeyboardButton(text=button['text'], callback_data=button['data'])
-        for button in buttons
-    ]
-
-    return InlineKeyboardMarkup(inline_keyboard=chunk_buttons(inline_buttons, size=size))
+    return keyboard
 
 
 def modes_keyboard(selected: str=None) -> InlineKeyboardMarkup:

@@ -1,0 +1,28 @@
+services:
+  redis:
+    image: redis:alpine
+    command: ["redis-server", "--save", "20", "1", "--loglevel", "warning"]
+    env_file:
+      - .env
+    restart: on-failure
+    ports:
+      - 6379:6379
+  db:
+    image: postgres:alpine
+    env_file:
+      - .env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: on-failure
+    ports:
+      - 5432:5432
+  bot:
+    build: .
+    command: sh -c "make migrate && make run"
+    depends_on:
+      - redis
+      - db
+
+
+volumes:
+  postgres_data:

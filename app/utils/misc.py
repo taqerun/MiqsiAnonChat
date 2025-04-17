@@ -6,11 +6,6 @@ from aiogram.utils.i18n import gettext as _
 INTERESTS_RESET_KEY = 'reset_interests'
 
 
-def chunked(seq, size):
-    """Split sequence into evenly sized chunks."""
-    return [seq[i:i + size] for i in range(0, len(seq), size)]
-
-
 def language_flag(lang_code: str) -> str:
     if len(lang_code) != 2:
         return ''

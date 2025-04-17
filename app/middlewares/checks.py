@@ -15,6 +15,12 @@ class ChecksMiddleware(BaseMiddleware):
         event: TelegramObject,
         data: Dict[str, Any],
     ) -> Any:
+        """
+        This middleware creates a new user in the database if the user does not exist yet.
+
+        The locale of the user is determined by the language_code of the event context,
+        or 'en' if it is not set.
+        """
         session = data['session']
         event_context = data.get('event_context')
 

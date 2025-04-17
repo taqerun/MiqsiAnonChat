@@ -13,11 +13,10 @@ class MyI18nMiddleware(I18nMiddleware):
         session: AsyncSession = data.get('session')
         event_context = data.get('event_context')
 
-        lang_code = "en"
-
         if event_context and session:
             result = await session.execute(select(User.locale).where(User.id == event_context.chat.id))
             user_locale = result.scalar_one_or_none()
-            return user_locale or lang_code
+            if user_locale:
+                return user_locale
 
-        return lang_code
+        return "en"

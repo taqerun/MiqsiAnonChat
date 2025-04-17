@@ -7,6 +7,7 @@ from app.core import commands
 from app.keyboards import languages_keyboard, main_menu_keyboard
 from app.database.models import User
 from app.utils import get_available_locales
+from app.utils import HTML
 
 
 language_router = Router()
@@ -17,7 +18,7 @@ async def prompt_language_selection(message: Message, user: User):
     """
     Prompt the user to select a language using inline keyboard.
     """
-    await message.reply(_("<b>Choose your language:</b>"), reply_markup=languages_keyboard(locale=user.locale))
+    await message.reply(HTML.b(_("Choose your language")), reply_markup=languages_keyboard(locale=user.locale))
 
 
 @language_router.callback_query(lambda c: c.data in get_available_locales())
@@ -33,15 +34,15 @@ async def set_language(callback: types.CallbackQuery, session: AsyncSession, use
 
         await session.commit()
 
-        text = _("💬 Language updated from {before} to {after}", locale=selected_locale).format(
+        text = '💬 ' + _("Language updated from {before} to {after}", locale=selected_locale).format(
                 before=current_locale.upper(),
                 after=selected_locale.upper()
             )
 
         if callback.message.reply_to_message:
-            await callback.message.reply_to_message.reply(text, reply_markup=main_menu_keyboard(selected_locale))
+            await callback.message.reply_to_message.reply(HTML.b(text), reply_markup=main_menu_keyboard(selected_locale))
 
         await callback.answer(text)
         await callback.message.delete()
     else:
-        await callback.answer(_("<b>Please choose a language different from your current one.</b>"))
+        await callback.answer(HTML.b(_("Please choose a language different from your current one")))

@@ -1,7 +1,7 @@
 from typing import Any, Awaitable, Callable, Dict
 
 from aiogram import BaseMiddleware
-from aiogram.types import TelegramObject, CallbackQuery, Message
+from aiogram.types import TelegramObject
 
 from app.services.builders.dialog_builder import DialogBuilder
 
@@ -18,13 +18,11 @@ class DialogMiddleware(BaseMiddleware):
         event: TelegramObject,
         data: Dict[str, Any],
     ) -> Any:
-        message: Message | None = getattr(event, 'message', None)
-        callback: CallbackQuery | None = getattr(event, 'callback_query', None)
+        event_context = data.get('event_context')
+        user_id = event_context.chat.id
+        bot = data.get('bot')
+        session = data.get('session')
 
-        user = (message or callback).from_user
-        user_id = user.id
-        bot = data['bot']
-        session = data['session']
 
         data['dialog_ctx'] = await DialogBuilder.build(
             session=session,

@@ -8,8 +8,8 @@ from app.services.utils_services import UtilsServices
 
 class UtilsServicesMiddleware(BaseMiddleware):
     """
-    Middleware that injects DialogContext (dialog_ctx) into handler data,
-    based on current user and FSM state. Works with both messages and callbacks.
+    Middleware that injects UtilsServices instance into handler data,
+    allowing utilities to be easily accessed in handlers.
     """
 
     async def __call__(
@@ -18,7 +18,9 @@ class UtilsServicesMiddleware(BaseMiddleware):
         event: TelegramObject,
         data: Dict[str, Any],
     ) -> Any:
-        bot = data['bot']
+        bot = data.get('bot')
+        if not bot:
+            raise ValueError("Bot instance not found in data")
 
         data['utils_service'] = UtilsServices(bot)
 

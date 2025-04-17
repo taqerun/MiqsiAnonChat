@@ -6,9 +6,12 @@ from app.core.logs import logger
 
 
 try:
+    logger.info("Initializing database engine and session_maker...")
     engine = create_async_engine(DB_URI, future=True, echo=True)
     session_maker = async_sessionmaker(bind=engine, class_=AsyncSession, expire_on_commit=False)
+
+    logger.info("Database connection established.")
     logger.info("Database engine and session_maker initialized.")
 except SQLAlchemyError:
-    logger.exception("Error while initializing the database connection.")
+    logger.exception("Error while initializing the database engine and session_maker.")
     raise

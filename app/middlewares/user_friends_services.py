@@ -4,12 +4,12 @@ from aiogram import BaseMiddleware
 from aiogram.types import TelegramObject
 
 from app.services.user_friends_services import UserFriendsService
+from app.database.models import User
 
 
 class UserFriendsServicesMiddleware(BaseMiddleware):
     """
-    Middleware that injects DialogContext (dialog_ctx) into handler data,
-    based on current user and FSM state. Works with both messages and callbacks.
+    Middleware that injects UserFriendsService (friends_service) into handler data.
     """
     async def __call__(
         self,
@@ -17,7 +17,10 @@ class UserFriendsServicesMiddleware(BaseMiddleware):
         event: TelegramObject,
         data: Dict[str, Any],
     ) -> Any:
-        session = data['session']
-        data['friends_service'] = UserFriendsService(data['user'], session)
+        session = data.get('session')
+        user = data.get('user')
+        state = data.get('state')
+
+        data['friends_service'] = UserFriendsService(user, session, state)
 
         return await handler(event, data)

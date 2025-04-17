@@ -23,9 +23,9 @@ async def setup_middlewares() -> None:
     dp.update.middleware(DatabaseMiddleware(session_pool=session_maker))
     dp.update.middleware(ChecksMiddleware())
     dp.update.middleware(MyI18nMiddleware(i18n=i18n))
-    dp.update.middleware(UtilsServicesMiddleware())
     dp.update.middleware(DialogMiddleware())
     dp.update.middleware(UserFriendsServicesMiddleware())
+    dp.update.middleware(UtilsServicesMiddleware())
 
 
 async def setup_routers(routers: Sequence[Router]) -> None:

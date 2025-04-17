@@ -41,18 +41,6 @@ def dialog_menu_keyboard(is_friends: bool=False) -> ReplyKeyboardMarkup:
         input_field_placeholder=_("Choose an action")
     )
 
-
-def friends_request_keyboard() -> ReplyKeyboardMarkup:
-    return ReplyKeyboardMarkup(
-        keyboard=[
-            [KeyboardButton(text=_('✅ Accept friend request'))],
-            [KeyboardButton(text=_('❌ Decline friend request'))]
-        ],
-        resize_keyboard=True,
-        one_time_keyboard=True,
-        input_field_placeholder=_("Choose an action")
-    )
-
 def stop_button_keyboard() -> ReplyKeyboardMarkup:
     return ReplyKeyboardMarkup(
         keyboard=[

@@ -7,6 +7,7 @@ from sqlalchemy import select
 from app.database import create_user
 from app.database.models import User
 from app.keyboards import main_menu_keyboard
+from app.utils import HTML
 
 
 start_router = Router()
@@ -26,11 +27,9 @@ async def handle_start_command(message: types.Message, session: AsyncSession):
         await create_user(user_id=message.from_user.id, locale=message.from_user.language_code or "en", session=session)
 
     return await message.reply(
-        _(
-            "<b>Welcome to Miqsi Anon Chat!</b>\n\n"
-            "<b>/search</b> — to find someone to chat with\n"
-            "<b>/language</b> — to change bot language\n"
-            "<b>/interests</b> — to set your interests"
-        ),
+        HTML.b(_("Welcome to Miqsi Anon Chat!\n\n")) +
+        f"{HTML.b('/search')} — {_('to find someone to chat with')}\n"
+        f"{HTML.b('/language')} — {_('to change bot language')}\n"
+        f"{HTML.b('/interests')} — {_('to set your interests')}",
         reply_markup=main_menu_keyboard()
     )

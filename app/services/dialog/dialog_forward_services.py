@@ -22,19 +22,18 @@ class DialogForwardService:
         """
         if message:
             redis_key = f'{self.dialog_id}:{message.message_id}'
-            await message.answer(redis_key)
+            # await message.answer('KEY: ' + redis_key)
             reply_id = await self.redis.get(redis_key)
 
             return int(reply_id) if reply_id else None
 
-    async def edit_message(self, original_message: types.Message):
+    async def edit_message(self, original_message: types.Message, recipient_id: int):
         forwarded_id = await self.get_message_target_id(original_message)
 
         try:
             if forwarded_id:
-                await original_message.answer(f'{forwarded_id}')
                 await original_message.bot.edit_message_text(
-                    chat_id=original_message.chat.id,
+                    chat_id=recipient_id,
                     message_id=forwarded_id,
                     text=original_message.text,
                     reply_markup=original_message.reply_markup
@@ -43,7 +42,7 @@ class DialogForwardService:
                 await original_message.answer('What?')
 
         except Exception as e:
-            logs.logger.exception("❌ Failed to edit forwarded message", exc_info=e)
+            logs.logger.exception( '❌ ' + 'Failed to edit forwarded message', exc_info=e)
 
 
     async def forward(self, message: types.Message, recipient_id: int) -> int | None:
@@ -80,5 +79,5 @@ class DialogForwardService:
             return forwarded.message_id
 
         except Exception as e:
-            logs.logger.exception("❌ Failed to forward message to dialog partner", exc_info=e)
-            await message.reply(_("❌ Failed to deliver message. The user may have blocked the bot."))
+            logs.logger.exception('❌ ' + "Failed to forward message to dialog partner", exc_info=e)
+            await message.reply('❌ ' +  _("Failed to deliver message. The user may have blocked the bot."))

@@ -7,6 +7,7 @@ from app.core import commands
 from app.keyboards import interests_keyboard
 from app.database.models import User, QueueUser
 from app.utils.misc import get_available_interests, INTERESTS_RESET_KEY
+from app.utils import HTML
 
 
 interests_router = Router()
@@ -20,7 +21,7 @@ async def handle_interests_command(message: Message, user: User):
     """
     keyboard = interests_keyboard(user.interests)  # type: ignore
 
-    await message.reply(_("<b>Choose your interests:</b>"), reply_markup=keyboard)
+    await message.reply(HTML.b(_("Choose your interests")), reply_markup=keyboard)
 
 
 @interests_router.callback_query(lambda c: c.data in get_available_interests().keys() or c.data == INTERESTS_RESET_KEY)
@@ -33,7 +34,6 @@ async def handle_interest_selection(callback: types.CallbackQuery, session: Asyn
 
     interests = user.interests or []
 
-    # Handle reset or empty interest list
     if chosen_interest == INTERESTS_RESET_KEY:
         interests = []
     elif chosen_interest in user.interests:

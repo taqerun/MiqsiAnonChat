@@ -6,9 +6,6 @@ migrate:
 
 .PHONY: i18n extract update compile
 
-i18n:
-	@echo "Available commands: extract, update, compile"
-
 extract:
 	pybabel extract -F babel.cfg -o locales/messages.pot .
 
@@ -17,3 +14,6 @@ update:
 
 compile:
 	pybabel compile -d locales
+
+run:
+	python main.py
