@@ -1,32 +1,32 @@
-import os
+from os import getenv
 from pathlib import Path
+
 from aiogram.utils.i18n import I18n
+from dotenv import load_dotenv
 from redis.asyncio import Redis
 
-BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-# === Lazy-load конфигурации ===
+# === Load environment variables ===
+load_dotenv()
 
-def get_bot_token() -> str:
-    token = os.getenv("BOT_TOKEN")
-    if not token:
-        raise RuntimeError("❌ BOT_TOKEN is missing.")
-    return token
+# === Paths ===
+BASE_DIR: Path = Path(__file__).resolve().parent.parent.parent
 
-def get_db_uri() -> str:
-    uri = os.getenv("DB_URI")
-    if not uri:
-        raise RuntimeError("❌ DB_URI is missing.")
-    return uri
+# === Environment configuration ===
+BOT_TOKEN: str | None = getenv('BOT_TOKEN')
+DB_URI: str | None = getenv('DB_URI')
+REDIS_URL: str | None = getenv('REDIS_HOST')
 
-def get_redis_url() -> str:
-    return os.getenv("REDIS_HOST", "redis://localhost:6379")
+if not BOT_TOKEN:
+    raise RuntimeError('❌ Environment variable BOT_TOKEN is missing.')
+if not DB_URI:
+    raise RuntimeError('❌ Environment variable DB_URI is missing.')
 
-# === Внешние сервисы ===
-redis = Redis.from_url(get_redis_url(), decode_responses=True)
+# === External services ===
+redis: Redis = Redis(host=REDIS_URL, decode_responses=True)
 
-# === Локализация ===
-i18n = I18n(
+# === Internationalization ===
+i18n: I18n = I18n(
     path=BASE_DIR / "locales",
     default_locale="en",
     domain="messages",
