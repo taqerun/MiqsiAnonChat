@@ -40,7 +40,7 @@ async def setup_routers(routers: Sequence[Router]) -> None:
 
 async def start_bot() -> None:
     """Start the bot."""
-    bot = Bot(get_bot_token, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
+    bot = Bot(get_bot_token(), default=DefaultBotProperties(parse_mode=ParseMode.HTML))
 
     try:
         await bot.delete_webhook(drop_pending_updates=True)
