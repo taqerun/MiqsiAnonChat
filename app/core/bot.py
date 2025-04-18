@@ -6,7 +6,7 @@ from aiogram.enums import ParseMode
 from aiogram.fsm.storage.redis import RedisStorage
 
 from app.core import commands, logs
-from app.core.config import BOT_TOKEN, redis, i18n
+from app.core.config import get_bot_token, redis, i18n
 from app.database import session_maker
 from app.handlers import all_routers
 from app.middlewares import DatabaseMiddleware, MyI18nMiddleware, ChecksMiddleware
@@ -40,7 +40,7 @@ async def setup_routers(routers: Sequence[Router]) -> None:
 
 async def start_bot() -> None:
     """Start the bot."""
-    bot = Bot(BOT_TOKEN, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
+    bot = Bot(get_bot_token, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
 
     try:
         await bot.delete_webhook(drop_pending_updates=True)

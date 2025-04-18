@@ -2,19 +2,28 @@ from os import getenv
 from pathlib import Path
 
 from aiogram.utils.i18n import I18n
+from dotenv import load_dotenv
 from redis.asyncio import Redis
 
+
+# === Load environment variables ===
+load_dotenv
 
 # === Paths ===
 BASE_DIR: Path = Path(__file__).resolve().parent.parent.parent
 
 # === Environment configuration ===
-BOT_TOKEN: str | None = getenv('BOT_TOKEN')
 DB_URI: str | None = getenv('DB_URI')
 REDIS_URL: str | None = getenv('REDIS_HOST')
 
-if not BOT_TOKEN:
-    raise RuntimeError('❌ Environment variable BOT_TOKEN is missing.')
+@property
+def get_bot_token():
+    token = getenv("BOT_TOKEN")
+    if not token:
+        raise RuntimeError("❌ BOT_TOKEN is missing.")
+    return token
+
+
 if not DB_URI:
     raise RuntimeError('❌ Environment variable DB_URI is missing.')
 
