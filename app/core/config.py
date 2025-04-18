@@ -23,7 +23,7 @@ if not DB_URI:
     raise RuntimeError('❌ Environment variable DB_URI is missing.')
 
 # === External services ===
-redis: Redis = Redis(host=REDIS_URL, decode_responses=True)
+redis: Redis = Redis.from_url('REDIS_URL')
 
 # === Internationalization ===
 i18n: I18n = I18n(
