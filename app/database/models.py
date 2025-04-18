@@ -50,7 +50,7 @@ class User(Base):
 
     interests: Mapped[Optional[List[str]]] = mapped_column(
         MutableList.as_mutable(ARRAY(String)),
-        nullable=True
+        nullable=False, default=list
     )
 
     friends: Mapped[dict] = mapped_column(
@@ -84,7 +84,7 @@ class QueueUser(Base):
 
     interests: Mapped[Optional[List[str]]] = mapped_column(
         MutableList.as_mutable(ARRAY(String)),
-        nullable=True
+        nullable=False, default=list
     )
 
     mode: Mapped[str] = mapped_column(

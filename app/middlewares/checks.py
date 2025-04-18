@@ -25,7 +25,7 @@ class ChecksMiddleware(BaseMiddleware):
         event_context = data.get('event_context')
 
         if not await is_user_exist(event_context.chat.id):
-            user_locale = event_context.chat.language_code or 'en'
-            await create_user(event_context.chat.from_user.id, user_locale, session)
+            user_locale = event_context.user.language_code or 'en'
+            await create_user(event_context.user.id, user_locale, session)
 
         return await handler(event, data)

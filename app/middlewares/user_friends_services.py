@@ -4,7 +4,6 @@ from aiogram import BaseMiddleware
 from aiogram.types import TelegramObject
 
 from app.services.user_friends_services import UserFriendsService
-from app.database.models import User
 
 
 class UserFriendsServicesMiddleware(BaseMiddleware):

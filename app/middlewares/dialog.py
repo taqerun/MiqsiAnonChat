@@ -19,7 +19,7 @@ class DialogMiddleware(BaseMiddleware):
         data: Dict[str, Any],
     ) -> Any:
         event_context = data.get('event_context')
-        user_id = event_context.chat.id
+        user_id = event_context.user.id
         bot = data.get('bot')
         session = data.get('session')
 

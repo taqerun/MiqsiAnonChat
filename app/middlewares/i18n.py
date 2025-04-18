@@ -14,7 +14,7 @@ class MyI18nMiddleware(I18nMiddleware):
         event_context = data.get('event_context')
 
         if event_context and session:
-            result = await session.execute(select(User.locale).where(User.id == event_context.chat.id))
+            result = await session.execute(select(User.locale).where(User.id == event_context.user.id))
             user_locale = result.scalar_one_or_none()
             if user_locale:
                 return user_locale

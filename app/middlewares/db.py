@@ -26,7 +26,7 @@ class DatabaseMiddleware(BaseMiddleware):
 
         async with self.session_pool() as session:
             data['session'] = session
-        
-        data['user'] = await session.get(User, event_context.chat.id)
+
+        data['user'] = await session.get(User, event_context.user.id)
 
         return await handler(event, data)
