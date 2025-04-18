@@ -52,6 +52,3 @@ dist/
 # System
 Thumbs.db
 ehthumbs.db
-
-# Alembic migrations
-/app/database/migrations/
