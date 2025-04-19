@@ -1,3 +1,6 @@
+init:
+	alembic revision --autogenerate -m "Initial migration"
+
 generate:
 	alembic revision --m="$(NAME)" --autogenerate
 
