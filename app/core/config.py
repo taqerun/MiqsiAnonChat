@@ -14,7 +14,7 @@ BASE_DIR: Path = Path(__file__).resolve().parent.parent.parent
 
 # === Environment configuration ===
 BOT_TOKEN: str | None = getenv('BOT_TOKEN')
-DB_URI: str | None = getenv('DB_URI')
+DB_URI: str | None = getenv('DATABASE_URL').replace('postgresql://', 'postgresql+asyncpg://')
 REDIS_URL: str | None = getenv('REDIS_URL')
 
 if not BOT_TOKEN:
